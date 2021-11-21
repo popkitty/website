@@ -1,5 +1,8 @@
 import React from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
+console.log('API_URL', API_URL)
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,7 @@ class Game extends React.Component {
   }
 
   refreshPops() {
-    fetch('http://localhost:3002/v1/pop')
+    fetch(`${API_URL}/v1/pop`)
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -30,7 +33,7 @@ class Game extends React.Component {
 
   handleClick() {
     // update server
-    fetch('http://localhost:3002/v1/pop/add', {
+    fetch(`${API_URL}/v1/pop/add`, {
         method: 'post',
         headers: {
           'Accept': 'application/json, text/plain, */*',
